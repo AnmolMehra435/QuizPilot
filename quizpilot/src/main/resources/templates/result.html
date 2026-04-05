@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+
+<div class="container mt-5 text-center">
+
+    <h2>Your Score</h2>
+    <h1 class="text-success" th:text="${score}"></h1>
+
+    <hr>
+
+    <h3>Leaderboard</h3>
+
+    <table class="table table-light mt-3">
+        <tr>
+            <th>Username</th>
+            <th>Score</th>
+        </tr>
+
+        <tr th:each="a : ${leaderboard}">
+            <td th:text="${a.username}"></td>
+            <td th:text="${a.score}"></td>
+        </tr>
+    </table>
+
+    <a href="/student/dashboard" class="btn btn-success mt-3">Back</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teacher Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">Teacher Dashboard</h2>
+
+    <!-- Create Quiz -->
+    <div class="card p-4 mb-4 shadow" style="background: white; color: black;">
+        <h4>Create Quiz</h4>
+        <form method="post" action="/admin/createQuiz">
+            <input class="form-control mb-2" name="title" placeholder="Quiz Title" required>
+            <button class="btn btn-success">Create</button>
+        </form>
+    </div>
+
+    <!-- Add Question -->
+    <div class="card p-4 mb-4 shadow" style="background: white; color: black;">
+        <h4>Add Question</h4>
+
+        <form method="post" action="/admin/addQuestion">
+
+            <select class="form-select mb-3" name="quizId">
+                <option th:each="q : ${quizzes}"
+                        th:value="${q.id}"
+                        th:text="${q.title}">
+                </option>
+            </select>
+
+            <input class="form-control mb-2" name="questionText" placeholder="Question" required>
+
+            <input class="form-control mb-2" name="option1" placeholder="Option 1" required>
+            <input class="form-control mb-2" name="option2" placeholder="Option 2" required>
+            <input class="form-control mb-2" name="option3" placeholder="Option 3" required>
+            <input class="form-control mb-2" name="option4" placeholder="Option 4" required>
+
+            <input class="form-control mb-3" type="number" name="correctOption" placeholder="Correct Option (1-4)" required>
+
+            <button class="btn btn-success">Add Question</button>
+        </form>
+    </div>
+
+    <!-- Quiz List -->
+    <div class="card p-4 shadow" style="background: white; color: black;">
+        <h4>All Quizzes</h4>
+
+        <ul class="list-group">
+            <li class="list-group-item" th:each="q : ${quizzes}">
+                <span th:text="${q.title}"></span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
